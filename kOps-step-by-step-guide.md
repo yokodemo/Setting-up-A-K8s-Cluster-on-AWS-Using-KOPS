@@ -69,6 +69,11 @@
 	export KOPS_STATE_STORE=s3://yokonew
  
       source .bashrc  
+ ![Image](https://github.com/user-attachments/assets/ecb710d8-3b20-4d84-b556-5e92e8eb12e4)
 
- ![Image](https://github.com/user-attachments/assets/1c142b26-b73f-4a57-9677-e5589159b406)
  
+ ### 7) Create sshkeys before creating cluster
+ ```sh
+    ssh-keygen
+ ```
+
