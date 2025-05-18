@@ -25,7 +25,9 @@
  ```
  ##  2a) install AWSCLI using the apt package manager
   ```sh
- sudo apt install awscli -y 
+ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+ unzip awscliv2.zip
+ sudo ./aws/install 
  ```
  ## or 2b) install AWSCLI using the script below
  ```sh
