@@ -73,17 +73,11 @@
  
  ### 7) Create sshkeys before creating cluster
  ```sh
-    ssh-keygen
+ # after running the below command press enter for all the keygen prompts
+    ssh-keygen -t rsa
 
- # if you encounter [permission denied] then run:
-    chown -R your_user:your_user .ssh
-
- # create id_rsa.pub
-    sudo mkdir ~/.ssh/
-    cd ~/.ssh/
-    sudo mv id_ed25519.pub  id_rsa.pub
- # if the ssh key created on your system is different from 'id_ed25519.pub' then change the name accordingly
-    
+  # if you encounter [permission denied] when creating the public key then run:
+    sudo chown -R kops:kops .ssh
  ```
 
  # 8) Create kubernetes cluster definitions on S3 bucket
@@ -92,7 +86,9 @@ kops create cluster --zones us-east-1a --networking weave --master-size t2.mediu
 # copy the sshkey into your cluster to be able to access your kubernetes node from the kops server
 kops create secret --name ${NAME} sshpublickey admin -i ~/.ssh/id_rsa.pub
 ```
+
 # 9) Initialise your kops kubernetes cluser by running the command below
 ```sh
 kops update cluster ${NAME} --yes
 ```
+
