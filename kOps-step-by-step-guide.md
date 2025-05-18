@@ -54,5 +54,20 @@
 
 ![Image](https://github.com/user-attachments/assets/78aa5400-ff02-4ac1-8e47-c9e546a1960a)
 
+## 6) create an S3 bucket
+## Execute the commands below in your KOPS control Server. use unique s3 bucket name. If you get bucket name exists error.
+	aws s3 mb s3://class30kops
+	aws s3 ls # to verify
+	
+ ## 6b) create an S3 bucket    
+	Expose environment variable:
+    # Add env variables in bashrc
+    
+       vi .bashrc
+	# Give Unique Name And S3 Bucket which you created.
+	export NAME=class30.k8s.local
+	export KOPS_STATE_STORE=s3://class30kops
+ 
+      source .bashrc  
 
  
