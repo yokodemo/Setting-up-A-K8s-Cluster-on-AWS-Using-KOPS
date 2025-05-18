@@ -17,7 +17,7 @@
 #!/bin/bash
 ## 1) Create Ubuntu EC2 instance in AWS
 
-## 2a) create kops user
+## 2) create kops user
 ``` sh
  sudo adduser kops
  sudo echo "kops  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/kops
@@ -38,3 +38,15 @@
  sudo unzip awscli-bundle.zip
  sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
  ```
+## 3) Install kops software on an ubuntu instance by running the commands below:
+ 	sudo apt install wget -y
+ 	sudo wget https://github.com/kubernetes/kops/releases/download/v1.22.0/kops-linux-amd64
+ 	sudo chmod +x kops-linux-amd64
+ 	sudo mv kops-linux-amd64 /usr/local/bin/kops
+ 
+## 4) Install kubectl kubernetes client if it is not already installed
+```sh
+ sudo curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+ sudo chmod +x ./kubectl
+ sudo mv ./kubectl /usr/local/bin/kubectl
+```
