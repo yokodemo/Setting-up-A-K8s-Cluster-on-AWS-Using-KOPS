@@ -52,7 +52,7 @@
 ```
 ## 5) Create an IAM role from AWS Console or CLI with the below Policies. 
 
-![Image](https://github.com/user-attachments/assets/78aa5400-ff02-4ac1-8e47-c9e546a1960a)
+![Image](https://github.com/user-attachments/assets/3cac6535-6035-47b9-9ae2-d1e7ae3bb798)
 
 ## 6) create an S3 bucket
 ## Execute the commands below in your KOPS control Server. use unique s3 bucket name. If you get bucket name exists error.
