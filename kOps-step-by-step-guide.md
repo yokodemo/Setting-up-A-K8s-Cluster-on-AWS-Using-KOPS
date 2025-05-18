@@ -65,9 +65,10 @@
     
        vi .bashrc
 	# Give Unique Name And S3 Bucket which you created.
-	export NAME=class30.k8s.local
-	export KOPS_STATE_STORE=s3://class30kops
+	export NAME=yokonew.k8s.local
+	export KOPS_STATE_STORE=s3://yokonew
  
       source .bashrc  
 
+ ![Image](https://github.com/user-attachments/assets/1c142b26-b73f-4a57-9677-e5589159b406)
  
