@@ -1,1 +1,1 @@
-# Setting-up-Kubernetes-K8s-Cluster-on-AWS-Using-KOPS
+# Kops (k8s Installation)
