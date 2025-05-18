@@ -2,7 +2,7 @@
 
 1.kops is a software use to create production ready k8s cluster in a cloud provider like AWS.
 
-2. kOPS SUPPORTS MULTIPLE CLOUD PROVIDERS
+2. kOPS supports multiple cloud providers
 
 3. Kops compete with managed kubernestes services like EKS, AKS and GKE
 
