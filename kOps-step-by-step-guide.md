@@ -40,7 +40,6 @@
  sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
  ```
 ## 3) Install kops software on an ubuntu instance by running the commands below:
- 	sudo apt install wget -y
  	sudo wget https://github.com/kubernetes/kops/releases/download/v1.22.0/kops-linux-amd64
  	sudo chmod +x kops-linux-amd64
  	sudo mv kops-linux-amd64 /usr/local/bin/kops
@@ -63,8 +62,7 @@
  ## 6b) create an S3 bucket    
 	Expose environment variable:
     # Add env variables in bashrc
-    
-       vi .bashrc
+      vi .bashrc
 	# Give Unique Name And S3 Bucket which you created.
 	export NAME=yokonew.k8s.local
 	export KOPS_STATE_STORE=s3://yokonew
@@ -76,7 +74,18 @@
  ### 7) Create sshkeys before creating cluster
  ```sh
     ssh-keygen
+
+ # if you encounter [permission denied] then run:
+    chown -R your_user:your_user .ssh
+
+ # create id_rsa.pub
+    sudo mkdir ~/.ssh/
+    cd ~/.ssh/
+    sudo mv id_ed25519.pub  id_rsa.pub
+ # if the ssh key created on your system is different from 'id_ed25519.pub' then change the name accordingly
+    
  ```
+
  # 8) Create kubernetes cluster definitions on S3 bucket
 ```sh
 kops create cluster --zones us-east-1a --networking weave --master-size t2.medium --master-count 1 --node-size t2.medium --node-count=2 ${NAME}
