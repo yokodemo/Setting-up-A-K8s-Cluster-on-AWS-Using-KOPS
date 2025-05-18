@@ -52,9 +52,7 @@
 ```
 ## 5) Create an IAM role from AWS Console or CLI with the below Policies. 
 
-	AmazonEC2FullAccess 
-	AmazonS3FullAccess
-	IAMFullAccess 
-	AmazonVPCFullAccess
+![Image](https://github.com/user-attachments/assets/78aa5400-ff02-4ac1-8e47-c9e546a1960a)
+
 
  
