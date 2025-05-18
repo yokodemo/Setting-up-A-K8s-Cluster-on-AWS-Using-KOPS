@@ -50,3 +50,11 @@
  sudo chmod +x ./kubectl
  sudo mv ./kubectl /usr/local/bin/kubectl
 ```
+## 5) Create an IAM role from AWS Console or CLI with the below Policies. 
+
+	AmazonEC2FullAccess 
+	AmazonS3FullAccess
+	IAMFullAccess 
+	AmazonVPCFullAccess
+
+ 
