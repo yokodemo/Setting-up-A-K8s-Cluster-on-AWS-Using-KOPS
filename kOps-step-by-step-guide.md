@@ -97,7 +97,33 @@ kops validate cluster
  * the ubuntu user is specific to Ubuntu. If not using Ubuntu please use the appropriate user based on your OS.
  * read about installing addons at: https://kops.sigs.k8s.io/operations/addons.
 ```
-## 10b - Export the kubeconfig file to manage your kubernetes cluster from a remote server. For this demo, Our remote server shall be our kops server 
+## 11) - Export the kubeconfig file to manage your kubernetes cluster from a remote server. For this demo, Our remote server shall be our kops server 
 ```sh
  kops export kubecfg $NAME --admin
 ```
+## 12) To list nodes and pod to ensure that you can make calls to the kubernetes apiSAerver and run workloads
+	  kubectl get nodes 
+
+### 12b) Alternative you can ssh into your kubernetes master server using the command below and manage your cluster from the master
+    sh -i ~/.ssh/id_rsa ubuntu@ipAddress
+
+### 12b) Alternative, Enable PasswordAuthentication in the master server and assign passwd
+```sh
+sudo sed -i "/^[^#]*PasswordAuthentication[[:space:]]no/c\PasswordAuthentication yes" /etc/ssh/sshd_config
+sudo service sshd restart
+sudo passwd ubuntu
+```
+ 
+## 13) To Delete Cluster
+
+   kops delete cluster --name=${NAME} --state=${KOPS_STATE_STORE} --yes  
+   
+====================================================================================================
+
+
+14 # IF you want to SSH to Kubernetes Master or Nodes Created by KOPS. You can SSH From KOPS_Server
+
+sh -i ~/.ssh/id_rsa ubuntu@ipAddress
+
+  
+``
