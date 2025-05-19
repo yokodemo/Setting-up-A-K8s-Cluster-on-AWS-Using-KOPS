@@ -49,9 +49,11 @@ To build clusters within AWS, we'll create a dedicated IAM user for Kops. This u
 ## 6) Configure the AWS client to use your new IAM user
 ## Execute the commands below in your KOPS control Server. use unique s3 bucket name. If you get bucket name exists error.
 ```
-aws configure            # Use your new access and secret key here
+aws configure
+# Use your new access and secret key here
 
-aws iam list-users       # you should see a list of all your IAM users here
+aws iam list-users
+# you should see a list of all your IAM users here
 ```	
  ## 6a) Create an S3 bucket  
  ## Execute the commands below in your KOPS control Server. use unique s3 bucket name. If you get bucket name exists error.
