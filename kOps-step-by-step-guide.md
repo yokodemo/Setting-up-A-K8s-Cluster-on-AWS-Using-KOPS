@@ -17,28 +17,14 @@
 #!/bin/bash
 ## 1) Create Ubuntu EC2 instance in AWS
 
-## 2) create kops user
-``` sh
- sudo adduser kops
- sudo echo "kops  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/kops
- sudo su - kops
- ```
- ##  2a) install AWSCLI using the apt package manager
+ ##  2a) install AWSCLI using the script below
   ```sh
  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
  sudo apt install unzip wget -y
  sudo unzip awscliv2.zip
  sudo ./aws/install 
  ```
- ## or 2b) install AWSCLI using the script below
- ```sh
- sudo apt update -y
- sudo apt install unzip wget -y
- sudo curl https://s3.amazonaws.com/aws-cli/awscli-bundle.zip -o awscli-bundle.zip
- sudo apt install unzip python -y
- sudo unzip awscli-bundle.zip
- sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
- ```
+ 
 ## 3) Install kops software on an ubuntu instance by running the commands below:
  	sudo wget https://github.com/kubernetes/kops/releases/download/v1.22.0/kops-linux-amd64
  	sudo chmod +x kops-linux-amd64
@@ -50,9 +36,15 @@
  sudo chmod +x ./kubectl
  sudo mv ./kubectl /usr/local/bin/kubectl
 ```
-## 5) Create an IAM role from AWS Console or CLI with the below Policies. 
+## 5) Create an IAM USER (used to access AWS recources). 
+### This is the working method for AWS CLI commands. Kindly configure aws-cli packages for your Linux machines.
+To build clusters within AWS, we'll create a dedicated IAM user for Kops. This user requires API credentials to use Kops. Create the user and credentials using the AWS console. The kops user will require the following IAM permissions to function properly: or You can create now with admin access for testing.
 
-![Image](https://github.com/user-attachments/assets/3cac6535-6035-47b9-9ae2-d1e7ae3bb798)
+1. AmazonEC2FullAccess
+2. AmazonRoute53FullAccess
+3. AmazonS3FullAccess
+4. IAMFullAccess
+5. AmazonVPCFullAccess
 
 ## 6) create an S3 bucket
 ## Execute the commands below in your KOPS control Server. use unique s3 bucket name. If you get bucket name exists error.
@@ -68,10 +60,10 @@
 	export KOPS_STATE_STORE=s3://yokonew
  
       source .bashrc  
- ![Image](https://github.com/user-attachments/assets/ecb710d8-3b20-4d84-b556-5e92e8eb12e4)
+
 
  
- ### 7) Create sshkeys before creating cluster
+ # 7) Create sshkeys before creating cluster
  ```sh
  # after running the below command press enter for all the keygen prompts
     ssh-keygen -t rsa
@@ -89,6 +81,20 @@ kops create secret --name ${NAME} sshpublickey admin -i ~/.ssh/id_rsa.pub
 
 # 9) Initialise your kops kubernetes cluser by running the command below
 ```sh
-kops update cluster ${NAME} --yes
+kops update cluster --name ${NAME} --yes --admin
 ```
-
+# 10) Validate your cluster(KOPS will take some time to create cluster ,Execute below commond after 3 or 4 mins)
+```
+kops validate cluster
+	   
+	   Suggestions:
+ * validate cluster: kops validate cluster --wait 10m
+ * list nodes: kubectl get nodes --show-labels
+ * ssh to the master: ssh -i ~/.ssh/id_rsa ubuntu@ipaddress
+ * the ubuntu user is specific to Ubuntu. If not using Ubuntu please use the appropriate user based on your OS.
+ * read about installing addons at: https://kops.sigs.k8s.io/operations/addons.
+```
+## 10b - Export the kubeconfig file to manage your kubernetes cluster from a remote server. For this demo, Our remote server shall be our kops server 
+```sh
+ kops export kubecfg $NAME --admin
+```
