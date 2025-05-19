@@ -46,21 +46,22 @@ To build clusters within AWS, we'll create a dedicated IAM user for Kops. This u
 4. IAMFullAccess
 5. AmazonVPCFullAccess
 
-## 6) create an S3 bucket
+## 6) Configure the AWS client to use your new IAM user
 ## Execute the commands below in your KOPS control Server. use unique s3 bucket name. If you get bucket name exists error.
-	aws s3 mb s3://yokonew
+```
+aws configure            # Use your new access and secret key here
+
+aws iam list-users       # you should see a list of all your IAM users here
+```	
+ ## 6a) Create an S3 bucket  
+ ## Execute the commands below in your KOPS control Server. use unique s3 bucket name. If you get bucket name exists error.
+ 	aws s3 mb s3://yokonew
 	aws s3 ls # to verify
-	
- ## 6b) create an S3 bucket    
-	Expose environment variable:
-    # Add env variables in bashrc
-      vi .bashrc
-	# Give Unique Name And S3 Bucket which you created.
+ 
+ ## 6b) Give Unique Name And S3 Bucket which you created.
 	export NAME=yokonew.k8s.local
 	export KOPS_STATE_STORE=s3://yokonew
  
-      source .bashrc  
-
 
  
  # 7) Create sshkeys before creating cluster
