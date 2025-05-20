@@ -120,10 +120,3 @@ sudo passwd ubuntu
    
 ====================================================================================================
 
-
-14 # IF you want to SSH to Kubernetes Master or Nodes Created by KOPS. You can SSH From KOPS_Server
-
-sh -i ~/.ssh/id_rsa ubuntu@ipAddress
-
-  
-``
