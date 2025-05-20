@@ -86,7 +86,7 @@ kops create secret --name ${NAME} sshpublickey admin -i ~/.ssh/id_rsa.pub
 ```sh
 kops update cluster --name ${NAME} --yes --admin
 ```
-# 10) Validate your cluster(KOPS will take some time to create cluster ,Execute below commond after 3 or 4 mins)
+# 10) Validate your cluster(KOPS will take some time to create cluster ,Execute below command after 10 or 15 mins)
 ```
 kops validate cluster
 	   
